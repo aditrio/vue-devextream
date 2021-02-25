@@ -8,10 +8,12 @@ import Profile from "./views/profile";
 import Tasks from "./views/tasks";
 import defaultLayout from "./layouts/side-nav-outer-toolbar";
 import simpleLayout from "./layouts/single-card";
+import Test from "./views/test.vue";
 
 Vue.use(Router);
 
 const router = new Router({
+  mode : 'history',
   routes: [
     {
       path: "/home",
@@ -20,6 +22,15 @@ const router = new Router({
       components: {
         layout: defaultLayout,
         content: Home
+      }
+    },
+    {
+      path: "/test",
+      name: "test",
+      meta: { requiresAuth: true },
+      components: {
+        layout: defaultLayout,
+        content: Test
       }
     },
     {

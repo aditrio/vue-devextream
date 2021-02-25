@@ -5,6 +5,11 @@ export default [
     icon: "home"
   },
   {
+    text: "Test",
+    path: "/test",
+    icon: "folder"
+  },
+  {
     text: "Examples",
     icon: "folder",
     items: [
