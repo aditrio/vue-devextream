@@ -5,19 +5,28 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "build-themes": "devextreme build",
+    "postinstall": "npm run build-themes"
   },
   "dependencies": {
     "core-js": "^3.9.0",
-    "vue": "^2.6.12"
+    "devextreme": "^20.2.4",
+    "devextreme-vue": "^20.2.4",
+    "node-sass": "^4.11.0",
+    "vue": "^2.6.12",
+    "vue-router": "^3.0.1"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^4.5.11",
     "@vue/cli-plugin-eslint": "^4.5.11",
     "@vue/cli-service": "^4.5.11",
     "babel-eslint": "^10.1.0",
+    "devextreme-cli": "1.2.10",
+    "devextreme-themebuilder": "^20.2.4",
     "eslint": "^6.8.0",
     "eslint-plugin-vue": "^6.2.2",
+    "sass-loader": "^7.1.0",
     "vue-template-compiler": "^2.6.12"
   },
   "eslintConfig": {
