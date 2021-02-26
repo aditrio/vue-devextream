@@ -12,13 +12,21 @@
       <DxDataGrid
         id="dataGrid"
         :data-source="data"
-        key-expr="EmployeeID"
+        key-expr="id"
         allow-column-reordering="true"
-        loadPanel="true"
+        loadPanel="true "
       >
         <!-- settings -->
+        <DxEditing
+          :allow-adding="true"
+          :allow-updating="true"
+          :allow-deleting="true"
+          mode="popup"
+        />
+        <DxForm label-location="top" />
+        <DxPopup :show-title="true" title="Data" />
         <DxSelection mode="multiple" />
-        <DxFilterRow :visible="true" />
+        <DxFilterRow :visible="false" />
         <DxSearchPanel :visible="true" />
         <DxHeaderFilter :visible="true" />
         <DxGrouping :context-menu-enabled="true" />
@@ -27,17 +35,21 @@
 
         <!-- column -->
         <DxColumn
-          :allow-header-filtering="false"
-          data-field="FullName"
-        ></DxColumn>
-        <DxColumn data-field="Position"></DxColumn>
-        <DxColumn data-field="BirthDate" data-type="date"> </DxColumn>
-        <DxColumn data-field="HireDate" data-type="date"> </DxColumn>
-        <DxColumn data-field="City" />
-        <DxColumn data-field="Country"></DxColumn>
-        <DxColumn data-field="Address" />
-        <DxColumn data-field="HomePhone" />
-        <DxColumn data-field="PostalCode" />
+          :width="200"
+          :allow-sorting="false"
+          data-field="gambar"
+          cell-template="pict"
+        />
+        <DxColumn :allow-header-filtering="false" data-field="kode"></DxColumn>
+        <DxColumn data-field="nama"></DxColumn>
+
+        <DxColumn data-field="harga" />
+        <DxColumn data-field="is_ready"></DxColumn>
+
+        <!-- template -->
+        <template #pict="{ data }">
+          <img class="thumbnail" :src="'./img/' + data.value" />
+        </template>
       </DxDataGrid>
     </div>
   </div>
@@ -47,7 +59,8 @@
 import "devextreme/dist/css/dx.common.css";
 import "devextreme/dist/css/dx.light.css";
 // import axios from "axios";
-import service from "../services/employees.service";
+// import service from "../services/employees.service";
+import data from "../services/test.service";
 
 import {
   DxDataGrid,
@@ -59,6 +72,9 @@ import {
   DxGrouping,
   DxGroupPanel,
   DxSelection,
+  DxEditing,
+  DxForm,
+  DxPopup,
 } from "devextreme-vue/data-grid";
 
 export default {
@@ -73,6 +89,9 @@ export default {
     DxGrouping,
     DxGroupPanel,
     DxSelection,
+    DxEditing,
+    DxForm,
+    DxPopup,
   },
   data() {
     return {
@@ -85,10 +104,14 @@ export default {
     },
   },
   mounted() {
-    this.bindData(service.getEmployees());
+    this.bindData(data.getData());
   },
 };
 </script>
 
 <style>
+.thumbnail {
+  object-fit: cover;
+  height: 100px;
+}
 </style>
